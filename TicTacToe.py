@@ -25,6 +25,19 @@ def check_board_for_winner(game_board):
 if __name__ == "main":
     #Create game board as 2D array filled with empty strings
     #Get player symbol ('x' or 'o') and set computer symbol to opposite
+    player_symbol = input('Welcome, please choose your symbol for this game of TicTacToe (x or o)\n')
+    if player_symbol == 'x':
+        cpu_symbol = 'o'
+    elif player_symbol == 'o':
+        cpu_symbol = 'x'
+    elif player_symbol != 'x' and player_symbol != 'o':
+        #While loop until user enters valid symbol
+        while player_symbol != 'x' and player_symbol != 'o':
+            player_symbol = input('Please enter a valid symbol (x or o)\n')
+            if player_symbol == 'x':
+                cpu_symbol = 'o'
+            elif player_symbol == 'o':
+                cpu_symbol = 'x'
     #Get player move (1 - 9)
     #Get computer move
     #Check board
