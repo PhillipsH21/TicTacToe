@@ -1,5 +1,29 @@
 import random
 
+def game_board(player_input_char, placement):
+    top_left = '1'
+    top_mid = '2'
+    top_right = '3'
+    mid_left = '4'
+    mid_mid = '5'
+    mid_right = '6'
+    bot_left = '7'
+    bot_mid = '8'
+    bot_right = '9'
+
+    print("        |       |          ")
+    print("  ", top_left, "   |  ", top_mid, "  |   ", top_right, "    ")
+    print("        |       |          ")
+    print("---------------------------")
+    print("        |       |          ")
+    print("  ", mid_left, "   |  ", mid_mid, "  |   ", mid_right, "    ")
+    print("        |       |          ")
+    print("---------------------------")
+    print("        |       |          ")
+    print("  ", bot_left, "   |  ", bot_mid, "  |   ", bot_right, "    ")
+    print("        |       |          ")
+    print()
+
 def generate_move(game_board, cpu_symbol):
     cpu_move = randint(0, 8)
     if game_board[cpu_move // 3][cpu_move % 3] == "":
