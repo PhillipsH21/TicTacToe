@@ -25,7 +25,7 @@ def game_board(player_input_char, placement):
     print()
 
 def generate_move(game_board, cpu_symbol):
-    cpu_move = randint(0, 8)
+    cpu_move = random.randint(0, 8)
     if game_board[cpu_move // 3][cpu_move % 3] == "":
         game_board[cpu_move // 3][cpu_move % 3] = cpu_symbol
     else:
@@ -46,7 +46,7 @@ def check_board_for_winner(game_board):
     #Returns False if a winner is not detected, and the symbol in spot (0, 0) of the board as a placeholder
     return False, game_board[0][0]
 
-if __name__ == "main":
+if __name__ == "__main__":
     #Create game board as 2D array filled with empty strings
     #Get player symbol ('x' or 'o') and set computer symbol to opposite
     player_symbol = input('Welcome, please choose your symbol for this game of TicTacToe (x or o)\n')
