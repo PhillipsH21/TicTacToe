@@ -12,23 +12,23 @@ def game_board(player_input_char, placement, previous_movement):
     bot_right = 9
 
     if top_left == placement:
-        top_left = input_char
+        top_left = player_input_char
     if top_mid == placement:
-        top_mid = input_char
+        top_mid = player_input_char
     if top_right == placement:
-        top_right = input_char
+        top_right = player_input_char
     if mid_left == placement:
-        mid_left = input_char
+        mid_left = player_input_char
     if mid_mid == placement:
-        mid_mid = input_char
+        mid_mid = player_input_char
     if mid_right == placement:
-        mid_right = input_char
+        mid_right = player_input_char
     if bot_left == placement:
-        bot_left = input_char
+        bot_left = player_input_char
     if bot_mid == placement:
-        bot_mid = input_char
+        bot_mid = player_input_char
     if bot_right == placement:
-        bot_right = input_char
+        bot_right = player_input_char
 
     if previous_movement[0][0] == 'x':
         top_left = 'x'
@@ -184,6 +184,7 @@ if __name__ == "__main__":
             game_board(cpu_symbol, (generate_move(board_array, cpu_symbol)) + 1, board_array)
         except:
             print("It's a tie!")
+            break
 
     if (check_board_for_winner(board_array)[0] is True) and (check_board_for_winner(board_array)[1] == cpu_symbol):
         print('Better luck next time!')
