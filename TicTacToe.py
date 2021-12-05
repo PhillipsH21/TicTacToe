@@ -1,16 +1,72 @@
 import random
 
-def game_board(player_input_char, placement):
-    top_left = '1'
-    top_mid = '2'
-    top_right = '3'
-    mid_left = '4'
-    mid_mid = '5'
-    mid_right = '6'
-    bot_left = '7'
-    bot_mid = '8'
-    bot_right = '9'
+def game_board(player_input_char, placement, previous_placement):
+    top_left = 1
+    top_mid = 2
+    top_right = 3
+    mid_left = 4
+    mid_mid = 5
+    mid_right = 6
+    bot_left = 7
+    bot_mid = 8
+    bot_right = 9
 
+    if top_left == placement:
+        top_left = input_char
+    if top_mid == placement:
+        top_mid = input_char
+    if top_right == placement:
+        top_right = input_char
+    if mid_left == placement:
+        mid_left = input_char
+    if mid_mid == placement:
+        mid_mid = input_char
+    if mid_right == placement:
+        mid_right = input_char
+    if bot_left == placement:
+        bot_left = input_char
+    if bot_mid == placement:
+        bot_mid = input_char
+    if bot_right == placement:
+        bot_right = input_char
+
+    if previous_movement[0][0] == 'x':
+        top_left = 'x'
+    if previous_movement[0][1] == 'x':
+        top_mid = 'x'
+    if previous_movement[0][2] == 'x':
+        top_right = 'x'
+    if previous_movement[1][0] == 'x':
+        mid_left = 'x'
+    if previous_movement[1][1] == 'x':
+        mid_mid = 'x'
+    if previous_movement[1][2] == 'x':
+        mid_right = 'x'
+    if previous_movement[2][0] == 'x':
+        bot_left = 'x'
+    if previous_movement[2][1] == 'x':
+        bot_mid = 'x'
+    if previous_movement[2][2] == 'x':
+        bot_right = 'x'
+    if previous_movement[0][0] == 'o':
+        top_left = 'o'
+    if previous_movement[0][1] == 'o':
+        top_mid = 'o'
+    if previous_movement[0][2] == 'o':
+        top_right = 'o'
+    if previous_movement[1][0] == 'o':
+        mid_left = 'o'
+    if previous_movement[1][1] == 'o':
+        mid_mid = 'o'
+    if previous_movement[1][2] == 'o':
+        mid_right = 'o'
+    if previous_movement[2][0] == 'o':
+        bot_left = 'o'
+    if previous_movement[2][1] == 'o':
+        bot_mid = 'o'
+    if previous_movement[2][2] == 'o':
+        bot_right = 'o'
+    
     print("        |       |          ")
     print("  ", top_left, "   |  ", top_mid, "  |   ", top_right, "    ")
     print("        |       |          ")
@@ -30,7 +86,8 @@ def generate_move(game_board, cpu_symbol):
         game_board[cpu_move // 3][cpu_move % 3] = cpu_symbol
     else:
         generate_move(game_board, cpu_symbol)
-
+    return cpu_move
+        
 def check_board_for_winner(game_board):
     #Returns True if a winner is detected, and the symbol of the winner
     if game_board[1][1] != "":
@@ -51,6 +108,8 @@ if __name__ == "__main__":
     board_array = [["", "", "",],
                   ["", "", "",],
                   ["", "", ""]]
+    
+    game_board(1, 1, board_array)
     #Get player symbol ('x' or 'o') and set computer symbol to opposite
     player_symbol = input('Welcome, please choose your symbol for this game of TicTacToe (x or o)\n')
     if player_symbol == 'x':
@@ -77,7 +136,7 @@ if __name__ == "__main__":
         elif 7 <= player_move <= 9:
             board_array[2][player_move - 7] = player_symbol
     #Get computer move
-    generate_move(board_array, cpu_symbol)
+    game_board(cpu_symbol, (generate_move(board_array, cpu_symbol)) + 1, board_array)
     #Check board
     #If winner is detected, end game and display appropriate message
     #Else if the board is full and there is no winner, end game and display appropriate message
@@ -106,3 +165,4 @@ if __name__ == "__main__":
             print('That is an invalid position.')
             continue
         generate_move(board_array, cpu_symbol)
+        game_board(cpu_symbol, (generate_move(board_array, cpu_symbol)) + 1, board_array)
