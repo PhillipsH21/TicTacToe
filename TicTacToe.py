@@ -155,6 +155,7 @@ if __name__ == "__main__":
                 if board_array[0][player_move - 1] == "":
                     board_array[0][player_move - 1] = player_symbol
                     if check_board_for_winner(board_array)[0] is True:
+                        game_board(1, 1, board_array)
                         print('Congratulations, you win!')
                         break
                 else:
@@ -174,6 +175,7 @@ if __name__ == "__main__":
                 if board_array[2][player_move - 7] == "":
                     board_array[2][player_move - 7] = player_symbol
                     if check_board_for_winner(board_array)[0] is True:
+                        game_board(1, 1, board_array)
                         print('Congratulations, you win!')
                         break
                 else:
