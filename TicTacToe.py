@@ -1,6 +1,6 @@
 import random
 
-def game_board(player_input_char, placement, previous_movement):
+def game_board(input_char, placement, previous_movement):
     top_left = 1
     top_mid = 2
     top_right = 3
@@ -12,23 +12,23 @@ def game_board(player_input_char, placement, previous_movement):
     bot_right = 9
 
     if top_left == placement:
-        top_left = player_input_char
+        top_left = input_char
     if top_mid == placement:
-        top_mid = player_input_char
+        top_mid = input_char
     if top_right == placement:
-        top_right = player_input_char
+        top_right = input_char
     if mid_left == placement:
-        mid_left = player_input_char
+        mid_left = input_char
     if mid_mid == placement:
-        mid_mid = player_input_char
+        mid_mid = input_char
     if mid_right == placement:
-        mid_right = player_input_char
+        mid_right = input_char
     if bot_left == placement:
-        bot_left = player_input_char
+        bot_left = input_char
     if bot_mid == placement:
-        bot_mid = player_input_char
+        bot_mid = input_char
     if bot_right == placement:
-        bot_right = player_input_char
+        bot_right = input_char
 
     if previous_movement[0][0] == 'x':
         top_left = 'x'
@@ -164,6 +164,7 @@ if __name__ == "__main__":
                 if board_array[1][player_move - 4] == "":
                     board_array[1][player_move - 4] = player_symbol
                     if check_board_for_winner(board_array)[0] is True:
+                        game_board(1, 1, board_array)
                         print('Congratulations, you win!')
                         break
                 else:
@@ -183,6 +184,7 @@ if __name__ == "__main__":
                 continue
             game_board(cpu_symbol, (generate_move(board_array, cpu_symbol)) + 1, board_array)
         except:
+            game_board(1, 1, board_array)
             print("It's a tie!")
             break
 
