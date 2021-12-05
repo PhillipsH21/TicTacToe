@@ -48,6 +48,9 @@ def check_board_for_winner(game_board):
 
 if __name__ == "__main__":
     #Create game board as 2D array filled with empty strings
+    board_array = [["", "", "",],
+                  ["", "", "",],
+                  ["", "", ""]]
     #Get player symbol ('x' or 'o') and set computer symbol to opposite
     player_symbol = input('Welcome, please choose your symbol for this game of TicTacToe (x or o)\n')
     if player_symbol == 'x':
@@ -62,9 +65,38 @@ if __name__ == "__main__":
                 cpu_symbol = 'o'
             elif player_symbol == 'o':
                 cpu_symbol = 'x'
+                
     #Get player move (1 - 9)
+    if 1 <= player_move <= 3:
+        board_array[0][player_move - 1] = player_symbol
+    elif 4 <= player_move <= 6:
+        board_array[1][player_move - 4] = player_symbol
+    elif 7 <= player_move <= 9:
+        board_array[2][player_move - 7] = player_symbol
     #Get computer move
+    generate_move(board_array, cpu_symbol)
     #Check board
     #If winner is detected, end game and display appropriate message
     #Else if the board is full and there is no winner, end game and display appropriate message
     #Else, continue the game
+    while check_board_for_winner(board_array)[0] is not True:
+        player_move = int(input('Choose your next move.\n'))
+        if 1 <= player_move <= 3:
+            if board_array[0][player_move - 1] == "":
+                board_array[0][player_move - 1] = player_symbol
+            else:
+                print('That position is already taken.')
+                continue
+        elif 4 <= player_move <= 6:
+            if board_array[1][player_move - 4] == "":
+                board_array[1][player_move - 4] = player_symbol
+            else:
+                print('That position is already taken.')
+                continue
+        elif 7 <= player_move <= 9:
+            if board_array[2][player_move - 7] == "":
+                board_array[2][player_move - 7] = player_symbol
+            else:
+                print('That position is already taken.')
+                continue
+        generate_move(board_array, cpu_symbol)
