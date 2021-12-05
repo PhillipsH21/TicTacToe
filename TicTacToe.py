@@ -128,13 +128,20 @@ if __name__ == "__main__":
     #Get player move (1 - 9)
     player_move = 0
     while (player_move < 1) or (player_move > 9):
-        player_move = int(input('Choose where you would like to make your first play (1-9).\n'))
-        if 1 <= player_move <= 3:
-            board_array[0][player_move - 1] = player_symbol
-        elif 4 <= player_move <= 6:
-            board_array[1][player_move - 4] = player_symbol
-        elif 7 <= player_move <= 9:
-            board_array[2][player_move - 7] = player_symbol
+        try:
+            player_move = int(input('Choose where you would like to make your first play (1-9).\n'))
+            if 1 <= player_move <= 3:
+                board_array[0][player_move - 1] = player_symbol
+            elif 4 <= player_move <= 6:
+                board_array[1][player_move - 4] = player_symbol
+            elif 7 <= player_move <= 9:
+                board_array[2][player_move - 7] = player_symbol
+            else:
+                print('Invalid position')
+                continue
+        except:
+            print('Invalid position')
+            continue
     #Get computer move
     game_board(cpu_symbol, (generate_move(board_array, cpu_symbol)) + 1, board_array)
     #Check board
@@ -142,27 +149,41 @@ if __name__ == "__main__":
     #Else if the board is full and there is no winner, end game and display appropriate message
     #Else, continue the game
     while check_board_for_winner(board_array)[0] is not True:
-        player_move = int(input('Choose your next move.\n'))
-        if 1 <= player_move <= 3:
-            if board_array[0][player_move - 1] == "":
-                board_array[0][player_move - 1] = player_symbol
+        try:
+            player_move = int(input('Choose your next move.\n'))
+            if 1 <= player_move <= 3:
+                if board_array[0][player_move - 1] == "":
+                    board_array[0][player_move - 1] = player_symbol
+                    if check_board_for_winner(board_array)[0] is True:
+                        print('Congratulations, you win!')
+                        break
+                else:
+                    print('That position is already taken.')
+                    continue
+            elif 4 <= player_move <= 6:
+                if board_array[1][player_move - 4] == "":
+                    board_array[1][player_move - 4] = player_symbol
+                    if check_board_for_winner(board_array)[0] is True:
+                        print('Congratulations, you win!')
+                        break
+                else:
+                    print('That position is already taken.')
+                    continue
+            elif 7 <= player_move <= 9:
+                if board_array[2][player_move - 7] == "":
+                    board_array[2][player_move - 7] = player_symbol
+                    if check_board_for_winner(board_array)[0] is True:
+                        print('Congratulations, you win!')
+                        break
+                else:
+                    print('That position is already taken.')
+                    continue
             else:
-                print('That position is already taken.')
+                print('That is an invalid position.')
                 continue
-        elif 4 <= player_move <= 6:
-            if board_array[1][player_move - 4] == "":
-                board_array[1][player_move - 4] = player_symbol
-            else:
-                print('That position is already taken.')
-                continue
-        elif 7 <= player_move <= 9:
-            if board_array[2][player_move - 7] == "":
-                board_array[2][player_move - 7] = player_symbol
-            else:
-                print('That position is already taken.')
-                continue
-        else:
-            print('That is an invalid position.')
-            continue
-        generate_move(board_array, cpu_symbol)
-        game_board(cpu_symbol, (generate_move(board_array, cpu_symbol)) + 1, board_array)
+            game_board(cpu_symbol, (generate_move(board_array, cpu_symbol)) + 1, board_array)
+        except:
+            print("It's a tie!")
+
+    if (check_board_for_winner(board_array)[0] is True) and (check_board_for_winner(board_array)[1] == cpu_symbol):
+        print('Better luck next time!')
