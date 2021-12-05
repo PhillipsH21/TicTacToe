@@ -1,6 +1,6 @@
 import random
 
-def game_board(player_input_char, placement, previous_placement):
+def game_board(player_input_char, placement, previous_movement):
     top_left = 1
     top_mid = 2
     top_right = 3
