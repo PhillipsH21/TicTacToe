@@ -67,12 +67,15 @@ if __name__ == "__main__":
                 cpu_symbol = 'x'
                 
     #Get player move (1 - 9)
-    if 1 <= player_move <= 3:
-        board_array[0][player_move - 1] = player_symbol
-    elif 4 <= player_move <= 6:
-        board_array[1][player_move - 4] = player_symbol
-    elif 7 <= player_move <= 9:
-        board_array[2][player_move - 7] = player_symbol
+    player_move = 0
+    while (player_move < 1) or (player_move > 9):
+        player_move = int(input('Choose where you would like to make your first play (1-9).\n'))
+        if 1 <= player_move <= 3:
+            board_array[0][player_move - 1] = player_symbol
+        elif 4 <= player_move <= 6:
+            board_array[1][player_move - 4] = player_symbol
+        elif 7 <= player_move <= 9:
+            board_array[2][player_move - 7] = player_symbol
     #Get computer move
     generate_move(board_array, cpu_symbol)
     #Check board
