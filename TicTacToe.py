@@ -102,4 +102,7 @@ if __name__ == "__main__":
             else:
                 print('That position is already taken.')
                 continue
+        else:
+            print('That is an invalid position.')
+            continue
         generate_move(board_array, cpu_symbol)
